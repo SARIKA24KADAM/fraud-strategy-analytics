@@ -1,6 +1,6 @@
 # Data dictionary
 
-PaySim is a public synthetic mobile-money dataset. The simulator produces transaction records; the data is not from TD or real customers.
+PaySim is a public synthetic mobile-money dataset. The simulator produces transaction records; the data is synthetic and does not represent real customers.
 
 | Column | Meaning | Project use |
 |---|---|---|
