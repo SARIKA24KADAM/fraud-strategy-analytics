@@ -13,13 +13,14 @@ python -m venv .venv
 # Windows: .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
+pip install -e .
 python -m fraud_strategy.prepare --input data/raw/paysim.csv --output data/processed/features.parquet
 python -m fraud_strategy.train --input data/processed/features.parquet --output reports
 python -m fraud_strategy.report --input data/processed/features.parquet --output reports
 streamlit run dashboard.py
 ```
 
-Run commands from the repository root. The pipeline uses DuckDB to read and transform the CSV, then scikit-learn to train a model. It expects PaySim column names.
+Run commands from the repository root. DuckDB reads and transforms the CSV; scikit-learn trains a model. The pipeline expects PaySim column names.
 
 ## Project questions
 
@@ -40,6 +41,6 @@ Run commands from the repository root. The pipeline uses DuckDB to read and tran
 
 ## Guardrails and limitations
 
-This is a learning demonstration, not a deployed control or financial recommendation. Scores are not used to automatically decline transactions. Customer friction is only approximated by legitimate alert volume; actual authentication outcomes, customer impact, review costs, and operational capacity are not present. Transaction type is only a product/channel proxy. The simulated labels cannot establish performance on real first- or third-party fraud. Production use would require representative institution data, point-in-time validation, independent model-risk review, fairness and privacy assessment, operational sign-off, monitoring, and rollback controls.
+This is a learning demonstration, not a deployed control or financial recommendation. Scores are not used to automatically decline transactions. Customer friction is only approximated by legitimate alert volume; actual authentication outcomes, customer impact, review costs, and operational capacity are not present. Transaction type is only a product/channel proxy. Simulated labels cannot establish performance on real first- or third-party fraud. Production use would require representative institution data, point-in-time validation, independent model-risk review, fairness and privacy assessment, operational sign-off, monitoring, and rollback controls.
 
 See [risk governance](docs/risk_governance.md) and [feature timing](docs/feature_timing.md).
