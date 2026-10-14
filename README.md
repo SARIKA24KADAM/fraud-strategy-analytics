@@ -22,6 +22,10 @@ streamlit run dashboard.py
 
 Run commands from the repository root. DuckDB reads and transforms the CSV; scikit-learn trains a model. The pipeline expects PaySim column names.
 
+## Learn the project
+
+Read the [full project guide](docs/project_guide.md) for a step-by-step explanation of the data, workflow, code files, graphs, metrics, and how the project was designed.
+
 ## Dashboard graphs
 
 The Streamlit dashboard displays hourly transaction/fraud trends, fraud volume and amount by transaction type, and model-versus-rule comparisons. Strategy graphs compare alert rate with recall and show fraud dollars captured at candidate thresholds.
@@ -40,7 +44,7 @@ The Streamlit dashboard displays hourly transaction/fraud trends, fraud volume a
 - `src/fraud_strategy/report.py`: hourly and type-level summaries.
 - `sql/fraud_strategy.sql`: DuckDB exploration queries.
 - `dashboard.py`: Streamlit report viewer and graphs.
-- `docs/`: strategy design, data dictionary, feature timing, governance, and role alignment.
+- `docs/`: strategy design, data dictionary, feature timing, governance, role alignment, and learning guide.
 - `config/strategy_assumptions.json`: explicit threshold/capacity assumptions.
 
 ## Guardrails and limitations
