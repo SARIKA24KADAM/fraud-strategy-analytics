@@ -13,11 +13,15 @@ OUTPUT = REPORTS / "graphs"
 def export_graphs():
     hourly = pd.read_csv(REPORTS / "hourly_strategy_monitoring.csv")
     segments = pd.read_csv(REPORTS / "segment_baseline.csv")
+    step_col = "step"
+    transaction_col = "transaction_count" if "transaction_count" in hourly else "transactions"
+    fraud_count_col = "fraud_count" if "fraud_count" in hourly else "fraud_transactions"
+    type_col = "type" if "type" in segments else "transaction_type"
     OUTPUT.mkdir(parents=True, exist_ok=True)
 
     fig, ax = plt.subplots(figsize=(10, 5))
-    ax.plot(hourly["step"], hourly["transaction_count"], label="Transactions", linewidth=1.5)
-    ax.plot(hourly["step"], hourly["fraud_count"], label="Fraud transactions", linewidth=1.5)
+    ax.plot(hourly[step_col], hourly[transaction_col], label="Transactions", linewidth=1.5)
+    ax.plot(hourly[step_col], hourly[fraud_count_col], label="Fraud transactions", linewidth=1.5)
     ax.set(title="Hourly transaction and fraud counts", xlabel="Simulated hour", ylabel="Count")
     ax.legend()
     ax.grid(alpha=0.25)
@@ -26,8 +30,8 @@ def export_graphs():
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(10, 5))
-    ax.plot(hourly["step"], hourly["fraud_amount"], color="#c0392b", linewidth=1.5)
-    ax.fill_between(hourly["step"], hourly["fraud_amount"], color="#c0392b", alpha=0.15)
+    ax.plot(hourly[step_col], hourly["fraud_amount"], color="#c0392b", linewidth=1.5)
+    ax.fill_between(hourly[step_col], hourly["fraud_amount"], color="#c0392b", alpha=0.15)
     ax.set(title="Simulated fraud amount by hour", xlabel="Simulated hour", ylabel="Fraud amount")
     ax.grid(alpha=0.25)
     fig.tight_layout()
@@ -36,7 +40,7 @@ def export_graphs():
 
     ordered = segments.sort_values("fraud_amount", ascending=True)
     fig, ax = plt.subplots(figsize=(9, 5))
-    ax.barh(ordered["type"], ordered["fraud_amount"], color="#2874a6")
+    ax.barh(ordered[type_col], ordered["fraud_amount"], color="#2874a6")
     ax.set(title="Simulated fraud amount by transaction type", xlabel="Fraud amount", ylabel="Transaction type")
     ax.grid(axis="x", alpha=0.25)
     fig.tight_layout()
@@ -73,3 +77,4 @@ def export_graphs():
 
 if __name__ == "__main__":
     export_graphs()
+
