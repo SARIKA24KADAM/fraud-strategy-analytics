@@ -29,7 +29,7 @@ Read the [full project guide](docs/project_guide.md) for a step-by-step explanat
 
 ## Dashboard graphs
 
-The Streamlit dashboard displays hourly transaction/fraud trends, fraud volume and amount by transaction type, and model-versus-rule comparisons. Strategy graphs compare alert rate with recall and show fraud dollars captured at candidate thresholds. Run `python export_graphs.py` after generating the reports to save chart images as PNG files in `reports/graphs/`.
+The Streamlit dashboard displays hourly transaction/fraud trends, fraud volume and amount by transaction type, and model-versus-rule comparisons. Strategy graphs compare alert rate with recall and show fraud dollars captured at candidate thresholds. Run `python export_graphs.py` after generating the reports to save chart images as PNG files in `docs/graphs/`.
 
 ## Project questions
 
