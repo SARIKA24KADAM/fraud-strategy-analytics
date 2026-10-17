@@ -18,6 +18,7 @@ python -m fraud_strategy.prepare --input data/raw/paysim.csv --output data/proce
 python -m fraud_strategy.train --input data/processed/features.parquet --output reports
 python -m fraud_strategy.report --input data/processed/features.parquet --output reports
 streamlit run dashboard.py
+python export_graphs.py
 ```
 
 Run commands from the repository root. DuckDB reads and transforms the CSV; scikit-learn trains a model. The pipeline expects PaySim column names.
@@ -28,7 +29,7 @@ Read the [full project guide](docs/project_guide.md) for a step-by-step explanat
 
 ## Dashboard graphs
 
-The Streamlit dashboard displays hourly transaction/fraud trends, fraud volume and amount by transaction type, and model-versus-rule comparisons. Strategy graphs compare alert rate with recall and show fraud dollars captured at candidate thresholds.
+The Streamlit dashboard displays hourly transaction/fraud trends, fraud volume and amount by transaction type, and model-versus-rule comparisons. Strategy graphs compare alert rate with recall and show fraud dollars captured at candidate thresholds. Run `python export_graphs.py` after generating the reports to save chart images as PNG files in `reports/graphs/`.
 
 ## Project questions
 
@@ -43,7 +44,8 @@ The Streamlit dashboard displays hourly transaction/fraud trends, fraud volume a
 - `src/fraud_strategy/train.py`: time-ordered model evaluation and threshold metrics.
 - `src/fraud_strategy/report.py`: hourly and type-level summaries.
 - `sql/fraud_strategy.sql`: DuckDB exploration queries.
-- `dashboard.py`: Streamlit report viewer and graphs.
+- `dashboard.py`: Streamlit report viewer and interactive graphs.
+- `export_graphs.py`: saves report-based graph images as PNG files.
 - `docs/`: strategy design, data dictionary, feature timing, governance, role alignment, and learning guide.
 - `config/strategy_assumptions.json`: explicit threshold/capacity assumptions.
 
