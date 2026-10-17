@@ -7,7 +7,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parent
 REPORTS = ROOT / "reports"
-OUTPUT = REPORTS / "graphs"
+OUTPUT = ROOT / "docs" / "graphs"
 
 
 def export_graphs():
@@ -77,4 +77,3 @@ def export_graphs():
 
 if __name__ == "__main__":
     export_graphs()
-
